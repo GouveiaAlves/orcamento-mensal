@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<title>Orçamento Mensal</title>
+</head>
+<body>
+	<div class="card">
+		<h1>Orçamento Mensal</h1>
+	
+	<div>
+	<p>Total: <span id="saldo">€</span></p>
+	</div>
+
+	<input type="number" id="valor" placeholder="Digite um valor">
+
+    <div class="button">
+		<button class="depositar" onclick="depositar()">Adicionar</button>
+		<button class="sacar" onclick="sacar()">Subtrair</button>
+		<button class="apagar" onclick="reset()">Limpar</button>
+	</div>
+ </div>
+	<script src="index.js"></script>
+</body>
+</html>

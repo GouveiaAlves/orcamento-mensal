@@ -1,0 +1,106 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Arial", Rounded MT Bold;
+}
+
+body {
+	background: linear-gradient(135deg, #050505, #111827);
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+}
+
+.card {
+	background: #0f172a;
+	width: 350px;
+	padding: 30px;
+	border-radius: 22px;
+	border: 1px solid rgba(255, 255, 255, 0.06);
+	box-shadow: 0.10px 15px rgba(0, 0, 0, 0.6);
+
+}
+
+.card h1 {
+	text-align: center;
+	margin-bottom: 25px;
+	font-size: 30px;
+	color: #008b8b;
+}
+
+.saldo {
+	text-align: center;
+	margin-bottom: 25px;
+
+
+}
+
+#saldo {
+	color: gold;
+	font-size: 32px;
+
+}
+
+.saldo span {
+	font-size: 43px;
+	font-weight: bold;
+	color: grey;
+
+}
+
+input {
+	width: 100%;
+	padding: 14px;
+	margin: none;
+	bottom: 18px;
+	border-radius: 14px;
+	font-size: 16px;
+	outline: none;
+	background: #1e293b;
+	color: white;
+	border: none;
+
+}
+
+input::placeholder {
+	color: grey
+}
+
+.botoes {
+	display: flex;
+	gap: 12px;
+}
+
+button {
+	flex: 1;
+	padding: 14px;
+	border: none;
+	margin-top: 4px;
+	border-radius: 14px;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: bold;
+	transition: 0.5s;
+	color: white;
+}
+
+button:hover {
+	transform: scale(1.04);
+	opacity: 0.95;
+}
+
+.depositar {
+	background: #008b8b;
+
+}
+
+.sacar {
+	background: #ccaa00;
+}
+
+.apagar {
+	background: #ff4500;
+}
