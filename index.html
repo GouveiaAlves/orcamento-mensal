@@ -10,17 +10,22 @@
 	<div class="card">
 		<h1>Orçamento Mensal</h1>
 	
-	<div>
-	<p>Total: <span id="saldo">€</span></p>
+	<div class="resumo">
+		<p>Receitas: <span id="receitas"></span></p>
+		<p>Despesas: <span id="despesas"></span></p>	
+	    <p>Saldo: <span id="saldo"></span></p>
 	</div>
 
-	<input type="number" id="valor" placeholder="Digite um valor">
+	<input type="text" id="descricao" placeholder="Descrição">
+	<input type="number" id="input" placeholder="Valor">
 
     <div class="button">
 		<button class="depositar" onclick="depositar()">Adicionar</button>
 		<button class="sacar" onclick="sacar()">Subtrair</button>
 		<button class="apagar" onclick="reset()">Limpar</button>
 	</div>
+	<h2>Movimentos</h2>
+	<ul id="movimentos"></ul>
  </div>
 	<script src="index.js"></script>
 </body>

@@ -1,52 +1,130 @@
 function minhaConta(valorInicial) {
 
-	let saldo = Number(localStorage.getItem("saldo")) || valorInicial;
+	let receitas = Number(localStorage.getItem("receitas")) || 0;
+	let despesas = Number(localStorage.getItem("despesas")) || 0;
+	let saldo = Number(localStorage.getItem("saldo")) || 0;
+	let movimentos = JSON.parse(localStorage.getItem("movimentos")) || [];
+	
+	const input = document.getElementById("input")
+	const categoria = document.getElementById("categoria")
+	const  descricao= document.getElementById("descricao")
 
 
 	function guardarSaldo() {
 		localStorage.setItem("saldo", saldo);
+		localStorage.setItem("receitas", receitas);
+		localStorage.setItem("despesas", despesas);
+
+		localStorage.setItem("movimentos", JSON.stringify(movimentos))
 	}
 	return {
 		depositar(montante) {
+			receitas += montante
 			saldo += montante
+			movimentos.push({
+	
+				descricao: descricao.value,
+				valor: montante,
+				tipo: "+"
+			})
 			guardarSaldo()
 		},
+		
 		sacar(montante) {
+			despesas += montante
 			saldo -= montante
+			movimentos.push({
+			   
+				descricao: descricao.value,
+				valor: montante,
+				tipo: "-"
+			})
 			guardarSaldo()
+		},
+		mostrarReceitas() {
+			return receitas
+		}, 
+		mostrarDespesas() {
+			return despesas
 		},
 		mostrarSaldo() {
 			return saldo
-		}, resetar() {
+		},
+		mostrarMovimentos() {
+			return movimentos
+		},
+		resetar() {
+			receitas = 0
+			despesas = 0
 			saldo = 0
+			movimentos = []
 			guardarSaldo()
 		}
 	}
 }
 const conta = minhaConta(0)
 
+const elReceitas = document.getElementById("receitas")
+const elDespesas = document.getElementById("despesas")
 const elSaldo = document.getElementById("saldo")
-const input = document.getElementById("valor")
+const listaMovimentos = document.getElementById("movimentos")
 
-function atualizarSaldo() {
+function mostrarMovimentos() {
+
+	listaMovimentos.innerHTML = "";
+
+	for(const movimento of conta.mostrarMovimentos()) {
+
+		const li = document.createElement("li")
+		li.textContent =
+		
+		movimento.descricao  + " " +
+		movimento.tipo + movimento.valor + "€"
+
+		listaMovimentos.appendChild(li)
+	}
+}
+
+function atualizarInterface() {
+	elReceitas.textContent = conta.mostrarReceitas() + "€"
+	elDespesas.textContent = conta.mostrarDespesas() + "€"
 	elSaldo.textContent = conta.mostrarSaldo() + "€"
+
+	mostrarMovimentos()
 }
 
 function depositar() {
 	const valor = Number(input.value)
+
+	if(valor <= 0 || isNaN(valor)) {
+		input.value = ""
+		descricao.value = ""
+		return
+
+	}
 	conta.depositar(valor)
-	atualizarSaldo()
+	atualizarInterface()
 	input.value = ""
+	descricao.value = ""
 }
 function sacar() {
 	const valor = Number(input.value)
+
+	if(valor <= 0 || isNaN(valor)) {
+		input.value = ""
+		descricao.value = ""
+		return
+
+	}
 	conta.sacar(valor)
-	atualizarSaldo()
+	atualizarInterface()
 	input.value = ""
 }
 function reset() {
 	conta.resetar()
-	atualizarSaldo()
+	atualizarInterface()
 	input.value = ""
 }
-atualizarSaldo()
+
+atualizarInterface()
+
