@@ -5,10 +5,6 @@ function minhaConta(valorInicial) {
 	let saldo = Number(localStorage.getItem("saldo")) || 0;
 	let movimentos = JSON.parse(localStorage.getItem("movimentos")) || [];
 	
-	const input = document.getElementById("input")
-	const categoria = document.getElementById("categoria")
-	const  descricao= document.getElementById("descricao")
-
 
 	function guardarSaldo() {
 		localStorage.setItem("saldo", saldo);
@@ -63,6 +59,11 @@ function minhaConta(valorInicial) {
 	}
 }
 const conta = minhaConta(0)
+
+	const input = document.getElementById("input")
+	const categoria = document.getElementById("categoria")
+	const  descricao= document.getElementById("descricao")
+
 
 const elReceitas = document.getElementById("receitas")
 const elDespesas = document.getElementById("despesas")
@@ -119,11 +120,14 @@ function sacar() {
 	conta.sacar(valor)
 	atualizarInterface()
 	input.value = ""
+	descricao.value = ""
 }
 function reset() {
 	conta.resetar()
 	atualizarInterface()
+	
 	input.value = ""
+	descricao.value = ""
 }
 
 atualizarInterface()
